@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWMS - 로그인</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            padding: 15px;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container img {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .form-floating {
+            margin-bottom: 1rem;
+        }
+
+        .login-card {
+            background-color: #fff;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-login {
+            background-color: #1890ff;
+            border-color: #1890ff;
+        }
+
+        .btn-login:hover {
+            background-color: #096dd9;
+            border-color: #096dd9;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            color: #6c757d;
+            font-size: 0.875rem;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-container">
+            <svg width="200" height="80" viewBox="0 0 380 150">
+                <!-- Background Circle -->
+                <circle cx="75" cy="75" r="70" fill="#1890ff" opacity="0.1"/>
+                
+                <!-- Main Box -->
+                <rect x="35" y="45" width="80" height="60" fill="none" stroke="#1890ff" stroke-width="8" rx="4"/>
+                
+                <!-- Inner Lines -->
+                <line x1="55" y1="45" x2="55" y2="105" stroke="#1890ff" stroke-width="4" opacity="0.5"/>
+                <line x1="95" y1="45" x2="95" y2="105" stroke="#1890ff" stroke-width="4" opacity="0.5"/>
+                
+                <!-- Arrows -->
+                <path d="M15,75 L30,75 M20,70 L30,75 L20,80" fill="none" stroke="#1890ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M135,75 L120,75 M130,70 L120,75 L130,80" fill="none" stroke="#1890ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                
+                <!-- Top Arc -->
+                <path d="M60,25 Q75,15 90,25" fill="none" stroke="#1890ff" stroke-width="6" stroke-linecap="round"/>
+                
+                <!-- DWMS Text -->
+                <text x="170" y="85" font-family="Arial, sans-serif" font-weight="bold" font-size="60" fill="#1890ff">
+                    DWMS
+                </text>
+                
+                <!-- Tagline -->
+                <text x="170" y="110" font-family="Arial, sans-serif" font-size="14" fill="#666666">
+                    DATEC Warehouse Management System
+                </text>
+            </svg>
+        </div>
+
+        <div class="card login-card">
+            <div class="card-body p-4">
+                <form id="loginForm" class="needs-validation" novalidate>
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
+                        <label for="emailInput">이메일</label>
+                        <div class="error-message" id="emailError">이메일을 입력해주세요.</div>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
+                        <label for="passwordInput">비밀번호</label>
+                        <div class="error-message" id="passwordError">비밀번호를 입력해주세요.</div>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">로그인 상태 유지</label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary btn-login" type="submit">로그인</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2024 DATEC. All rights reserved.
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // 입력값 검증
+                let isValid = true;
+                const email = $('#emailInput').val();
+                const password = $('#passwordInput').val();
+
+                if (!email) {
+                    $('#emailError').show();
+                    isValid = false;
+                } else {
+                    $('#emailError').hide();
+                }
+
+                if (!password) {
+                    $('#passwordError').show();
+                    isValid = false;
+                } else {
+                    $('#passwordError').hide();
+                }
+
+                if (isValid) {
+                    // 실제 로그인 처리는 여기서 구현
+                    // 임시로 대시보드로 이동
+                    window.location.href = '/dashboard.html';
+                }
+            });
+
+            // 입력 필드 포커스 시 에러 메시지 숨김
+            $('.form-control').on('focus', function() {
+                $(this).siblings('.error-message').hide();
+            });
+        });
+    </script>
+</body>
+</html>
